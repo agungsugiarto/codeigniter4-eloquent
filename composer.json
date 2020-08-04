@@ -1,0 +1,33 @@
+{
+    "name": "agungsugiarto/codeigniter4-eloquent",
+    "description": "The Illuminate Database package for CodeIgniter 4",
+    "keywords": ["codegniter4", "codeigniter4-eloquent", "database", "orm", "sql"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "agungsugiarto",
+            "email": "me.agungsugiarto@tgmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.2",
+        "codeigniter4/framework": "^4.0",
+        "illuminate/database": "^7.22"
+    },
+    "autoload": {
+        "psr-4": {
+            "Fluent\\": "src/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.5"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "phpunit --colors=always -vvv"
+    }
+}
