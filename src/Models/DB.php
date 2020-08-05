@@ -2,18 +2,17 @@
 
 namespace Fluent\Models;
 
-use CodeIgniter\Config\Config;
 use Illuminate\Database\Capsule\Manager;
 
 class DB extends Manager
 {
     protected $driver;
 
-    public function __construct(Manager $capsule, Config $config)
+    public function __construct()
     {
         parent::__construct();
 
-        switch ($config::get('Database')->default['DBDriver']) {
+        switch (config('Database')->default['DBDriver']) {
             case 'MySQLi':
                 $this->driver = 'mysql';
                 break;
@@ -28,22 +27,22 @@ class DB extends Manager
                 break;
         }
 
-        $capsule->addConnection([
+        $this->addConnection([
             'driver'    => $this->driver, 
-            'host'      => $config::get('Database')->default['hostname'],
-            'port'      => $config::get('Database')->default['port'],
-            'database'  => $config::get('Database')->default['database'], 
-            'username'  => $config::get('Database')->default['username'], 
-            'password'  => $config::get('Database')->default['password'], 
-            'charset'   => $config::get('Database')->default['charset'],  
-            'collation' => $config::get('Database')->default['DBCollat'], 
-            'prefix'    => $config::get('Database')->default['DBPrefix'],
-            'strict'    => $config::get('Database')->default['strictOn'],
+            'host'      => config('Database')->default['hostname'],
+            'port'      => config('Database')->default['port'],
+            'database'  => config('Database')->default['database'], 
+            'username'  => config('Database')->default['username'], 
+            'password'  => config('Database')->default['password'], 
+            'charset'   => config('Database')->default['charset'],  
+            'collation' => config('Database')->default['DBCollat'], 
+            'prefix'    => config('Database')->default['DBPrefix'],
+            'strict'    => config('Database')->default['strictOn'],
             'schema'    => config('Database')->connect()->schema ?? 'public'
         ]);
 
-        $capsule->setAsGlobal();
+        $this->setAsGlobal();
 
-        $capsule->bootEloquent();
+        $this->bootEloquent();
     }
 }

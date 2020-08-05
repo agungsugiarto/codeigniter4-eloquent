@@ -3,9 +3,7 @@
 namespace Fluent\Config;
 
 use CodeIgniter\Config\BaseService as CoreServices;
-use CodeIgniter\Config\Config;
 use Fluent\Models\DB;
-use Illuminate\Database\Capsule\Manager;
 
 class Services extends CoreServices
 {
@@ -15,6 +13,6 @@ class Services extends CoreServices
             return static::getSharedInstance('eloquent');
         }
 
-        return new DB(new Manager, new Config);
+        return new DB();
     }
 }
