@@ -19,8 +19,10 @@ class DB extends Manager
                 break;
             case 'Postgre':
                 $this->driver = 'pgsql';
+                break;
             case 'SQLite3':
                 $this->driver = 'sqlite';
+                break;
             default:
                 $this->driver = 'mysql';
                 break;
