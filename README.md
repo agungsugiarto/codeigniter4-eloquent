@@ -16,7 +16,7 @@ composer require agungsugiarto/codeigniter4-eloquent
 ## Setup services eloquent
 Open App\Controllers\BaseController.php
 
-add `service(eloquent);` on function initController
+add `service('eloquent');` on function initController
 ```php
 //--------------------------------------------------------------------
 // Preload any models, libraries, etc, here.
