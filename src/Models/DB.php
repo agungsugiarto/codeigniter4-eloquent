@@ -39,7 +39,7 @@ class DB extends Manager
             'collation' => $config::get('Database')->default['DBCollat'], 
             'prefix'    => $config::get('Database')->default['DBPrefix'],
             'strict'    => $config::get('Database')->default['strictOn'],
-            'schema'    => 'public',
+            'schema'    => config('Database')->connect()->schema ?? 'public'
         ]);
 
         $capsule->setAsGlobal();
