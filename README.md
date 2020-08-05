@@ -24,7 +24,7 @@ add `service(eloquent);` on function initController
 // E.g.:
 // $this->session = \Config\Services::session();
 
-service(eloquent);
+service('eloquent');
 ```
 ## Usage
 
