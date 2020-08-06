@@ -16,7 +16,7 @@ class DB extends Manager
             case 'MySQLi':
                 $this->driver = 'mysql';
                 break;
-            case 'Postgre':
+            case 'postgre':
                 $this->driver = 'pgsql';
                 break;
             case 'SQLite3':
