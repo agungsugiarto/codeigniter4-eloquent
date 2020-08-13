@@ -28,11 +28,6 @@
             "Tests\\": "tests/"
         }
     },
-    "extra": {
-        "branch-alias": {
-            "2.x-dev": "2.x-dev"
-        }
-    },
     "scripts": {
         "test": "phpunit --colors=always -vvv"
     }
