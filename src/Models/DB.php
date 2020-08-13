@@ -2,7 +2,10 @@
 
 namespace Fluent\Models;
 
+use CodeIgniter\Config\Services;
+use CodeIgniter\HTTP\URI;
 use Illuminate\Database\Capsule\Manager;
+use Illuminate\Pagination\Paginator;
 
 class DB extends Manager
 {
@@ -44,5 +47,23 @@ class DB extends Manager
         $this->setAsGlobal();
 
         $this->bootEloquent();
+
+        Paginator::currentPathResolver(function () {
+            return current_url();
+        });
+
+        Paginator::currentPageResolver(function ($pageName = 'page') {
+            $page = Services::request()->getVar($pageName);
+
+            if (filter_var($page, FILTER_VALIDATE_INT) !== false && (int) $page >= 1) {
+                return (int) $page;
+            }
+
+            return 1;
+        });
+
+        Paginator::queryStringResolver(function (URI $request) {
+            return $request->getQuery();
+        });
     }
 }

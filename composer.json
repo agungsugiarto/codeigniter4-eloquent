@@ -12,7 +12,8 @@
     "require": {
         "php": "^7.2",
         "codeigniter4/framework": "^4.0",
-        "illuminate/database": "^7.22"
+        "illuminate/database": "^7.25",
+        "illuminate/pagination": "^7.25"
     },
     "autoload": {
         "psr-4": {
