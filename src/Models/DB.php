@@ -49,9 +49,9 @@ class DB extends Manager
 
         $this->bootEloquent();
 
-        Paginator::$defaultView = '\Fluent\Views\default';
+        Paginator::$defaultView = config('Eloquent')->defaultView;
 
-        Paginator::$defaultSimpleView = '\Fluent\Views\simpleDefault';
+        Paginator::$defaultSimpleView = config('Eloquent')->simpleDefaultView;
 
         Paginator::viewFactoryResolver(function () {
             return new ViewBridge();
