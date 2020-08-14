@@ -71,8 +71,8 @@ class DB extends Manager
             return 1;
         });
 
-        Paginator::queryStringResolver(function (URI $request) {
-            return $request->getQuery();
+        Paginator::queryStringResolver(function () {
+            return Services::uri()->getQuery();
         });
     }
 }
