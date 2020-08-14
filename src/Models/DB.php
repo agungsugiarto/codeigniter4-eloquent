@@ -4,6 +4,7 @@ namespace Fluent\Models;
 
 use CodeIgniter\Config\Services;
 use CodeIgniter\HTTP\URI;
+use Fluent\Pagination\ViewBridge;
 use Illuminate\Database\Capsule\Manager;
 use Illuminate\Pagination\Paginator;
 
@@ -47,6 +48,14 @@ class DB extends Manager
         $this->setAsGlobal();
 
         $this->bootEloquent();
+
+        Paginator::defaultView('\Fluent\Views\DefaultView');
+
+        Paginator::defaultSimpleView('\Fluent\Views\DefaultView');
+
+        Paginator::viewFactoryResolver(function () {
+            return new ViewBridge();
+        });
 
         Paginator::currentPathResolver(function () {
             return current_url();
