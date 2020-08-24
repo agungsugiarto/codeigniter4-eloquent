@@ -5,6 +5,12 @@
 [![Latest Unstable Version](https://poser.pugx.org/agungsugiarto/codeigniter4-eloquent/v/unstable)](https://packagist.org/packages/agungsugiarto/codeigniter4-eloquent)
 [![License](https://poser.pugx.org/agungsugiarto/codeigniter4-eloquent/license)](https://packagist.org/packages/agungsugiarto/codeigniter4-eloquent)
 
+## Update from v1.x to 2.x
+just simple publish config eloquent with command
+```php
+php spark eloquent:publish
+```
+
 ## Instalation
 
 Include this package via Composer:
@@ -12,6 +18,15 @@ Include this package via Composer:
 ```console
 composer require agungsugiarto/codeigniter4-eloquent
 ```
+
+## Publish config
+```php
+php spark eloquent:publish
+```
+
+## Costuming view pagination
+The default view for pagination available with preset for bootstrap4 and basic html, if you want to costumize
+just copy from `\vendor\agungsugiarto\codeigniter4-eloquent\src\Views\Bootstrap4.php` and modify with your style after that put on folder App\Views. Finnaly change your config in `App\Config\Eloquent.php`
 
 ## Setup services eloquent
 Open App\Controllers\BaseController.php
