@@ -11,7 +11,7 @@
     ],
     "require": {
         "php": "^7.2",
-        "codeigniter4/framework": "^4.0",
+        "codeigniter4/framework": "^4.0.5",
         "illuminate/database": "^7.25",
         "illuminate/pagination": "^7.25"
     },
