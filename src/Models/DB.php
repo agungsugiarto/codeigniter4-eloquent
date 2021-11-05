@@ -26,6 +26,9 @@ class DB extends Manager
             case 'SQLite3':
                 $this->driver = 'sqlite';
                 break;
+            case 'SQLSRV':
+                $this->driver = 'sqlsrv';
+                break;
             default:
                 $this->driver = 'mysql';
                 break;
