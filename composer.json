@@ -10,10 +10,11 @@
         }
     ],
     "require": {
-        "php": "^7.2",
-        "codeigniter4/framework": "^4.0",
-        "illuminate/database": "^7.25",
-        "illuminate/pagination": "^7.25"
+        "php": "^7.3|^8.0",
+        "codeigniter4/framework": "^4.1",
+        "illuminate/database": "^8.83",
+        "illuminate/pagination": "^8.83",
+        "illuminate/events": "^8.83"
     },
     "autoload": {
         "psr-4": {

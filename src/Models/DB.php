@@ -3,18 +3,22 @@
 namespace Fluent\Models;
 
 use CodeIgniter\Config\Services;
-use CodeIgniter\HTTP\URI;
 use Fluent\Pagination\ViewBridge;
-use Illuminate\Database\Capsule\Manager;
+use Illuminate\Events\Dispatcher;
+use Illuminate\Pagination\Cursor;
+use Illuminate\Container\Container;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Facade;
+use Illuminate\Database\Capsule\Manager;
+use Illuminate\Pagination\CursorPaginator;
 
 class DB extends Manager
 {
     protected $driver;
 
-    public function __construct()
+    public function __construct(Container $container = null)
     {
-        parent::__construct();
+        parent::__construct($container);
 
         switch (config('Database')->default['DBDriver']) {
             case 'MySQLi':
@@ -45,6 +49,14 @@ class DB extends Manager
             'schema'    => config('Database')->connect()->schema ?? 'public'
         ]);
 
+        $this->getContainer()->singleton('events', function ($app) {
+            return new Dispatcher($this->getContainer());
+        });
+
+        $this->getContainer()->singleton('db', function ($app) {
+            return $this->getDatabaseManager();
+        });
+
         $this->setAsGlobal();
 
         $this->bootEloquent();
@@ -74,5 +86,12 @@ class DB extends Manager
         Paginator::queryStringResolver(function () {
             return Services::uri()->getQuery();
         });
+
+        CursorPaginator::currentCursorResolver(static function ($cursorName = 'cursor') {
+            return Cursor::fromEncoded(Services::request()->getVar($cursorName));
+        });
+
+        Facade::clearResolvedInstances();
+        Facade::setFacadeApplication($this->getContainer());
     }
 }
